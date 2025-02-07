@@ -1,9 +1,9 @@
-# PDF Analyzer  
+# AskMyPDF
 
 This app allows users to upload PDF documents, extract key insights, and analyze content efficiently using AI-powered processing. Users can upload PDFs, receive structured summaries, detect key metadata, and perform intelligent document searches. The backend processes PDFs by extracting text, analyzing content, and generating insights, making it an ideal tool for research, business, and personal document management.  
 
 ## Live Link  
-[Live Link](https://pdf-analyzer.vercel.app/)  
+[Live Link](https://ask-my-pdf-brown.vercel.app/)  
 
 ## Backend Service for PDF Processing  
 
@@ -13,6 +13,7 @@ This backend service provides functionality to:
 2. Extract metadata and text content from PDFs.  
 3. Perform intelligent text analysis using AI models.  
 4. Expose API endpoints for interacting with extracted content.  
+5. Ask any questions related to pdf.  
 
 ---
 
@@ -23,6 +24,7 @@ This backend service provides functionality to:
 - **Text Processing**: Extract and format text while preserving paragraphs.  
 - **AI-Powered Analysis**: Generate summaries and insights using AI.  
 - **File Compression**: Optimize and store PDFs efficiently.  
+- **Dark Mode**: Seamless darkmode for best user experience.  
 
 ---
 
@@ -85,8 +87,7 @@ The server will be available at: `http://localhost:5000`
 
 **Response**:  
 ```plaintext  
-Server is live.  
-Hello from the server!  
+Server is live! 
 ```  
 
 ### **POST /api/v1/upload**  
@@ -96,37 +97,14 @@ Hello from the server!
 - `Content-Type`: `application/pdf`  
 
 **Request Body**: PDF file data.  
-
-**Response**:  
-```json  
-{  
-  "message": "PDF processed",  
-  "metadata": {  
-    "title": "<document_title>",  
-    "author": "<document_author>",  
-    "keywords": "<document_keywords>"  
-  },  
-  "textPreview": "<extracted_text>",  
-  "wordCount": <word_count>,  
-  "charCount": <character_count>,  
-  "detectedLanguage": "<language>"  
-}  
-```  
-
-**Error Response**:  
-```json  
-{  
-  "error": "Failed to process PDF",  
-  "details": "<error_message>"  
-}  
-```  
+   
 
 ---
 
 ## Helper Functions  
 
 ### `extractMetadata`  
-Retrieves metadata such as title, author, and keywords from a PDF.  
+Retrieves metadata such as title, author, keywords, and etc from a PDF.  
 
 ### `splitTextIntoParagraphs`  
 Processes and structures extracted text while maintaining paragraph breaks.  
@@ -153,11 +131,6 @@ The server logs processing steps and errors for debugging purposes.
 ## Deployment  
 
 - Ensure the `.env` file is configured on the server.  
-- Use a process manager like `pm2` for production:  
-  ```bash  
-  npm install -g pm2  
-  pm2 start server.js --name "pdf-analyzer-backend"  
-  ```  
 
 ---
 
@@ -168,11 +141,6 @@ The server logs processing steps and errors for debugging purposes.
 - [pdf-parse](https://www.npmjs.com/package/pdf-parse) - Library for extracting text from PDFs.  
 - [axios](https://www.npmjs.com/package/axios) - Promise-based HTTP client.  
 - [dotenv](https://www.npmjs.com/package/dotenv) - Loads environment variables from `.env` file.  
-
----
-
-## License  
-This project is licensed under the MIT License. See the LICENSE file for details.  
 
 ---
 
