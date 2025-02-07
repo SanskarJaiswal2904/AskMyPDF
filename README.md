@@ -1,70 +1,183 @@
-# Getting Started with Create React App
+# PDF Analyzer  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app allows users to upload PDF documents, extract key insights, and analyze content efficiently using AI-powered processing. Users can upload PDFs, receive structured summaries, detect key metadata, and perform intelligent document searches. The backend processes PDFs by extracting text, analyzing content, and generating insights, making it an ideal tool for research, business, and personal document management.  
 
-## Available Scripts
+## Live Link  
+[Live Link](https://pdf-analyzer.vercel.app/)  
 
-In the project directory, you can run:
+## Backend Service for PDF Processing  
 
-### `npm start`
+This backend service provides functionality to:  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Process uploaded PDF files efficiently.  
+2. Extract metadata and text content from PDFs.  
+3. Perform intelligent text analysis using AI models.  
+4. Expose API endpoints for interacting with extracted content.  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Features  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **PDF Upload and Processing**: Upload PDF files for structured analysis.  
+- **Metadata Extraction**: Retrieve document title, author, and keywords.  
+- **Text Processing**: Extract and format text while preserving paragraphs.  
+- **AI-Powered Analysis**: Generate summaries and insights using AI.  
+- **File Compression**: Optimize and store PDFs efficiently.  
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Prerequisites  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js (>=16.x)  
+- npm (>=7.x)  
+- A `.env` file with the following variables:  
+  ```  
+  PORT=5000  
+  API_KEY_GEMINI=<Your API Key Here>  
+  ```  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Installation  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Clone the repository:  
+   ```bash  
+   git clone <repository-url>  
+   ```  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Navigate to the project directory:  
+   ```bash  
+   cd <repository-name>  
+   ```  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Install dependencies:  
+   ```bash  
+   npm install  
+   ```  
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Create a `.env` file in the root directory and add the required variables:  
+   ```bash  
+   PORT=5000  
+   API_KEY_GEMINI=<Your API Key Here>  
+   ```  
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Usage  
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Starting the Server  
 
-### Code Splitting
+Run the server with:  
+```bash  
+npm start  
+```  
+The server will be available at: `http://localhost:5000`  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## API Endpoints  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### **Base URL**  
+`http://localhost:5000`  
 
-### Making a Progressive Web App
+### **GET /**  
+**Description**: Server health check.  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Response**:  
+```plaintext  
+Server is live.  
+Hello from the server!  
+```  
 
-### Advanced Configuration
+### **POST /api/v1/upload**  
+**Description**: Upload a PDF file for processing.  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Headers**:  
+- `Content-Type`: `application/pdf`  
 
-### Deployment
+**Request Body**: PDF file data.  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**Response**:  
+```json  
+{  
+  "message": "PDF processed",  
+  "metadata": {  
+    "title": "<document_title>",  
+    "author": "<document_author>",  
+    "keywords": "<document_keywords>"  
+  },  
+  "textPreview": "<extracted_text>",  
+  "wordCount": <word_count>,  
+  "charCount": <character_count>,  
+  "detectedLanguage": "<language>"  
+}  
+```  
 
-### `npm run build` fails to minify
+**Error Response**:  
+```json  
+{  
+  "error": "Failed to process PDF",  
+  "details": "<error_message>"  
+}  
+```  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## Helper Functions  
+
+### `extractMetadata`  
+Retrieves metadata such as title, author, and keywords from a PDF.  
+
+### `splitTextIntoParagraphs`  
+Processes and structures extracted text while maintaining paragraph breaks.  
+
+### `compressPDF`  
+Compresses and optimizes PDFs for storage efficiency.  
+
+---
+
+## Development  
+
+### Running the Server in Development Mode  
+Use `nodemon` for automatic server restarts:  
+```bash  
+npm install -g nodemon  
+nodemon server.js  
+```  
+
+### Logging  
+The server logs processing steps and errors for debugging purposes.  
+
+---
+
+## Deployment  
+
+- Ensure the `.env` file is configured on the server.  
+- Use a process manager like `pm2` for production:  
+  ```bash  
+  npm install -g pm2  
+  pm2 start server.js --name "pdf-analyzer-backend"  
+  ```  
+
+---
+
+## Dependencies  
+
+- [express](https://www.npmjs.com/package/express) - Web framework for Node.js.  
+- [cors](https://www.npmjs.com/package/cors) - Middleware for handling Cross-Origin Resource Sharing.  
+- [pdf-parse](https://www.npmjs.com/package/pdf-parse) - Library for extracting text from PDFs.  
+- [axios](https://www.npmjs.com/package/axios) - Promise-based HTTP client.  
+- [dotenv](https://www.npmjs.com/package/dotenv) - Loads environment variables from `.env` file.  
+
+---
+
+## License  
+This project is licensed under the MIT License. See the LICENSE file for details.  
+
+---
+
+## Acknowledgments  
+Special thanks to the developers of the open-source tools used in this project.  
+
+## Author  
+Made by [Sanskar](https://sanskarjaiswal2904.github.io/Sanskar-Website/) with ❤️.

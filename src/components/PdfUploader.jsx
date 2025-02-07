@@ -39,6 +39,8 @@ const PdfUploader = () => {
     keywords: "",
   });
 
+  const API_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api/v1";
+
 
   // reset general values
   const resetStates = () => {
@@ -232,7 +234,7 @@ const PdfUploader = () => {
     formData.append("question", question); // Append question to formData
   
     try {
-      const response = await axios.post(`http://localhost:5000/api/v1/upload`, formData, {
+      const response = await axios.post(`${API_URL}/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
   
@@ -343,6 +345,9 @@ const PdfUploader = () => {
     <Typography variant="body1" sx={{ mb: 1, mt: 3, fontWeight: 'bold' }}>
         Upload any PDF and ask questions
       </Typography>
+    <Typography variant="body6" sx={{ mb: 1, fontStyle: 'italic', color: 'secondary' }}>
+        Maximum PDF size: 200MB
+      </Typography>
       <Tooltip title="Upload any PDF and ask questions" placement="right">
         <TextField
           type="file"
@@ -383,7 +388,7 @@ const PdfUploader = () => {
           placeholder='Ask any questions from the uploaded pdf'
           variant="standard"
           value={question}
-          onChange={(e) => setQuestion(e.target.value)}
+          onChange={(e) => setQuestion(e.target.value.trim())}
           sx={{
             width: { xs: "90%", sm: "90%", md: "90%" },
             minWidth: "300px",

@@ -1,8 +1,11 @@
 const axios = require("axios");
+require("dotenv").config();
+
 
 const callGemini = async (extractedText, question) => {
   try {
-    const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBr93VFhx9qSvL7XKhOk-_z2Pc639xKkKg";
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.API_KEY}`;
+
     
     const payload = {
       contents: [
