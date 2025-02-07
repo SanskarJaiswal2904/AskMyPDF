@@ -580,7 +580,7 @@ const PdfUploader = () => {
           <Tooltip title="Download Response">
             <Button
               variant="outlined"
-              onClick={() => downloadPDFUUID(responseText)}
+              onClick={() => downloadPDFUUID(responseText, "Response")}
               sx={{
                 color: "white",
                 fontWeight: "bold",
