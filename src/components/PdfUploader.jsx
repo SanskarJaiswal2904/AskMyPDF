@@ -83,6 +83,8 @@ const PdfUploader = () => {
 
   //reset everything
   const power_resetStates = () => {
+    setOpen(false);
+    setPdfUrl("");
     setResponseText("");
     setModelVersion("");
     setNumPages(null);
