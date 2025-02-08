@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, Button, Paper, Typography, Divider, Accordion, AccordionSummary, AccordionDetails, Tooltip, TextField, List, ListItem } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, Button, Paper, Typography, Divider, Accordion, AccordionSummary, AccordionDetails, Tooltip, TextField, List, ListItem, Modal, Backdrop, Fade } from "@mui/material";
 import axios from "axios";
 import pako from "pako";
 import IndiaGlobal from "./IndiaGlobal";
@@ -10,6 +10,19 @@ import jsPDF from "jspdf";
 import ReactMarkdown from "react-markdown";
 import { v4 as uuidv4 } from "uuid";
 import * as pdfjsLib from "pdfjs-dist/webpack";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "80%",
+  maxWidth: "900px",
+  bgcolor: "#00B8D4",
+  borderRadius: 2,
+  boxShadow: 24,
+  p: 3,
+};
 
 
 
@@ -25,6 +38,22 @@ const PdfUploader = () => {
   const [question, setQuestion] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  
+
+  //Modal
+  const [open, setOpen] = useState(false);
+  const [pdfUrl, setPdfUrl] = useState("");
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    if (selectedFile) {
+      const url = URL.createObjectURL(selectedFile);
+      setPdfUrl(url);
+
+      return () => URL.revokeObjectURL(url); // Clean up URL when component unmounts
+    }
+  }, [selectedFile]);
 
   //About PDF State
   const [numPages, setNumPages] = useState(null);
@@ -357,11 +386,60 @@ const PdfUploader = () => {
           style={{ marginBottom: "20px" }}
         />
       </Tooltip>
-      <Tooltip title="Remove file" placement="right">
-        <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={resetAll}>
-        Remove File
+
+      <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+      <div>
+      {/* Button to Open Modal */}
+      {selectedFile && 
+      <Tooltip title="View PDF" placement="bottom">
+        <Button
+          variant="outlined"
+          color="success"
+          startIcon={<i class="fa-regular fa-file-pdf"></i>}
+          onClick={handleOpen}
+          sx={{mr: 3}}
+        >
+          View PDF
         </Button>
       </Tooltip>
+}
+
+      {/* Modal */}
+      {selectedFile && 
+      <Modal
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{ timeout: 500 }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            {/* PDF Title */}
+            <Typography variant="h6" fontWeight="bold" mb={2} color="#4A148C">
+              {selectedFile.name || "PDF Document"}
+            </Typography>
+
+            {/* Embedded PDF */}
+            <object
+              data={pdfUrl}
+              type="application/pdf"
+              width="100%"
+              height="500px"
+            >
+              <p>Your browser does not support PDFs. <a href={pdfUrl}>Download PDF</a> instead.</p>
+            </object>
+          </Box>
+        </Fade>
+      </Modal>
+}
+    </div>
+        <Tooltip title="Remove PDF" placement="bottom">
+          <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={resetAll}>
+          Remove PDF
+          </Button>
+        </Tooltip>
+      </Box>
 
       {!selectedFile &&
         <Tooltip title="Download Sample PDF" placement="right">
@@ -516,15 +594,17 @@ const PdfUploader = () => {
           <Typography variant="body2">
             <strong>Preview:</strong> {textPreview || "Loading"}...
           </Typography>
-          <Typography variant="body2">
-            <strong>Word Count:</strong> {wordCount}
-          </Typography>
-          <Typography variant="body2">
-            <strong>Character Count:</strong> {charCount}
-          </Typography>
-          <Typography variant="body2">
-            <strong>Detected Language:</strong> {detectedLanguage}
-          </Typography>
+          <Box sx={{mt: 2}}>
+            <Typography variant="body2">
+              <strong>Word Count:</strong> {wordCount}
+            </Typography>
+            <Typography variant="body2">
+              <strong>Character Count:</strong> {charCount}
+            </Typography>
+            <Typography variant="body2">
+              <strong>Detected Language:</strong> {detectedLanguage}
+            </Typography>
+          </Box>
         </Box>
       </AccordionDetails>
     </Accordion>
