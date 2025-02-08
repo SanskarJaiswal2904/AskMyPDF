@@ -95,7 +95,7 @@ const Footer = () => {
             justifyContent: 'center', // Centers content horizontally
             alignItems: 'center' // Centers content vertically
           }}>
-            <a href="https://www.hitwebcounter.com" target="_blank">
+            <a href="https://www.hitwebcounter.com" target="_blank" rel='noreferrer'>
             <img src="https://hitwebcounter.com/counter/counter.php?page=18921204&style=0018&nbdigits=7&type=ip&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>  
 
         </Typography>
