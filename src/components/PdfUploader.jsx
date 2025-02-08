@@ -388,7 +388,7 @@ const PdfUploader = () => {
           placeholder='Ask any questions from the uploaded pdf'
           variant="standard"
           value={question}
-          onChange={(e) => setQuestion(e.target.value.trim())}
+          onChange={(e) => setQuestion(e.target.value)}
           sx={{
             width: { xs: "90%", sm: "90%", md: "90%" },
             minWidth: "300px",
