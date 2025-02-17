@@ -10,34 +10,34 @@ The following screenshots demonstrate various features of the project.
 
 <table>
   <tr>
-    <td><b>Asking Questions</b></td>
-    <td><b>Gemini AI Response</b></td>
-  </tr>
-  <tr>
-    <td><img src="public/Screenshots/AskingQuestions.png" width="1200" height="auto"></td>
-    <td><img src="public/Screenshots/GeminiAIResponse.png" width="1200" height="auto"></td>
-  </tr>
-  <tr>
-    <td><b>Home Screen</b></td>
     <td><b>Light Mode</b></td>
+    <td><b>Home Screen</b></td>
   </tr>
   <tr>
-    <td><img src="public/Screenshots/HomeScreen.png" width="1200" height="auto"></td>
     <td><img src="public/Screenshots/LightMode.png" width="1200" height="auto"></td>
+    <td><img src="public/Screenshots/HomeScreen.png" width="1200" height="auto"></td>
   </tr>
   <tr>
-    <td><b>Meta Data Of PDF</b></td>
     <td><b>Uploading PDF</b></td>
-  </tr>
-  <tr>
-    <td><img src="public/Screenshots/MetaDataOfPDF.png" width="1200" height="auto"></td>
-    <td><img src="public/Screenshots/UploadingPDF.png" width="1200" height="auto"></td>
-  </tr>
-  <tr>
     <td><b>View Uploaded PDF</b></td>
   </tr>
   <tr>
+    <td><img src="public/Screenshots/UploadingPDF.png" width="1200" height="auto"></td>
     <td><img src="public/Screenshots/ViewUploadedPDF.png" width="1200" height="auto"></td>
+  </tr>
+  <tr>
+    <td><b>Meta Data Of PDF</b></td>
+    <td><b>Asking Questions</b></td>
+  </tr>
+  <tr>
+    <td><img src="public/Screenshots/MetaDataOfPDF.png" width="1200" height="auto"></td>
+    <td><img src="public/Screenshots/AskingQuestions.png" width="1200" height="auto"></td>
+  </tr>
+  <tr>
+    <td><b>Gemini AI Response</b></td>
+  </tr>
+  <tr>
+    <td><img src="public/Screenshots/GeminiAIResponse.png" width="1200" height="auto"></td>
   </tr>
 </table>
 
